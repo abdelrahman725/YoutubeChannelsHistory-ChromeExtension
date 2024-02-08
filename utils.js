@@ -26,9 +26,18 @@ export async function fetchAndSetChannelLogo(channel_id, channel_logo_element) {
   });
 }
 
+export async function fetchChannelIdByVideoId(video_id) {
+  const res = await fetch(
+    "https://youtube.googleapis.com/youtube/v3/videos?" + 
+    `id=${video_id}&fields=items(snippet(channelId))&part=snippet&key=${API_KEY}`
+  );
+  const data = res.json();
+  return data.items.snippet.channelId;
+}
+
 export async function fetchChannelIdByName(channel_name) {
   try {
-    console.log("--- ID by requesting channel page----");
+    console.log("--- fetching ID by requesting channel page----");
     const res = await fetch(`https://www.youtube.com/${channel_name}`);
     // pattern example : "channelId":"UCUZWSD1JrY7ZEXpKmcSygiA"
     const res_body = await res.text();
@@ -38,14 +47,6 @@ export async function fetchChannelIdByName(channel_name) {
     return null;
   }
 }
-
-// export async function fetchChannelIdByVideoId(video_id) {
-//   const res = await fetch(
-//     `https://youtube.googleapis.com/youtube/v3/videos?part=snippet&id=${video_id}&key=${API_KEY}`
-//   );
-//   const data = res.json();
-//   return data.items.snippet.channelId;
-// }
 
 export async function getActiveTabURL() {
   const tabs = await chrome.tabs.query({

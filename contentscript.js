@@ -38,11 +38,12 @@
       .getElementsByTagName("yt-formatted-string")[0].title;
   };
 
-  // parse channel id for the current youtube video by trying out different methods
+  // parse/fetch channel id for the current youtube video by trying out different methods
   const getChannelId = async (channel_url) => {
-    const ChannelNameOrId = parseChannelName(channel_url);
-    if (ChannelNameOrId && ChannelNameOrId[0] !== "@") {
-      return ChannelNameOrId;
+    const ParsedChannelId = parseChannelName(channel_url);
+
+    if (ParsedChannelId && ParsedChannelId[0] !== "@") {
+      return ParsedChannelId;
     }
 
     if (window.ytInitialPlayerResponse) {
@@ -69,8 +70,8 @@
       return URL_CONTAINRS_ID[URL_CONTAINRS_ID.length - 2];
     }
 
-    const ChannelId = ChannelNameOrId
-      ? await utils.fetchChannelIdByName(ChannelNameOrId)
+    const ChannelId = ParsedChannelId
+      ? await utils.fetchChannelIdByName(ParsedChannelId)
       : null;
     return ChannelId;
   };
@@ -172,20 +173,20 @@
     }
   };
 
-  const observer = new MutationObserver(() => {
+  const Observer = new MutationObserver(() => {
     console.log("listening for mutations...");
     const mainVideo = document.getElementsByClassName("html5-main-video")[0];
 
     if (mainVideo) {
       videoPlaying();
       mainVideo.oncanplay = videoPlaying;
-      observer.disconnect();
+      Observer.disconnect();
     }
   });
 
-  const youtbe_app = document.getElementsByTagName("ytd-app")[0];
+  const YoutubeApp = document.getElementsByTagName("ytd-app")[0];
 
-  observer.observe(youtbe_app, {
+  Observer.observe(YoutubeApp, {
     subtree: true,
     childList: true,
   });

@@ -83,8 +83,8 @@ const viewChannels = (channels, channels_ids) => {
     NewChannelContainer.name = channels[channel_id].name;
     NewChannelContainer.className = "channel";
 
-    // next line will be deleted
-    NewChannelContainer.innerHTML = `<strong>${channel_id}</strong><br><br>`;
+    // should be  deleted
+    //NewChannelContainer.innerHTML = `<strong>${channel_id}</strong><br><br>`;
 
     ChannelINfoContainer.className = "channel-info";
     ChannelName.href = channels[channel_id].url;
