@@ -1,5 +1,5 @@
 # Youtube Channels History 
-## keep track of and search for Youtube channels you have watched, see the date and time of each watched video
+keep track of and search for Youtube channels you have watched, see the date and time of each watched video
 
 ## Installation
 
