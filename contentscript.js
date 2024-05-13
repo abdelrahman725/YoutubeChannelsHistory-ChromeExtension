@@ -33,9 +33,7 @@
   };
 
   const getChannelDisplayName = () => {
-    return document
-      .getElementById("upload-info")
-      .getElementsByTagName("yt-formatted-string")[0].title;
+    return document.querySelector("#header-text #title").innerHTML;
   };
 
   // parse/fetch channel id for the current youtube video by trying out different methods
@@ -83,9 +81,7 @@
 
   const getVideoTitle = () => {
     try {
-      return document
-        .getElementById("above-the-fold")
-        .getElementsByTagName("h1")[0].innerText;
+      return document.querySelector("#above-the-fold h1").innerText;
     } catch {
       return null;
     }
@@ -108,6 +104,7 @@
     console.log("--------------------------------");
     console.log("Video ID : ", videoId);
     console.log("Video Title : ", video_title);
+    console.log("Channel Name : ", ChannelDisplayName);
     console.log("Channel ID   : ", ChannelId);
     console.log("channel img: ", ChannelLogo);
     console.log("--------------------------------");
@@ -119,7 +116,10 @@
         currentChannels[ChannelId] = { videos: {} };
       }
 
-      currentChannels[ChannelId]["name"] = ChannelDisplayName;
+      if (!("name" in currentChannels[ChannelId])) {
+        currentChannels[ChannelId]["name"] = ChannelDisplayName;
+      }
+
       currentChannels[ChannelId]["url"] = ChannelUrl;
       currentChannels[ChannelId]["logo_url"] = ChannelLogo;
 

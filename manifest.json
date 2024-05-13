@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "YouTube Channel History",
+  "name": "YouTube ChannelsHistory",
   "version": "0.1.0",
   "description": "keep track of and search for Youtube channels you have watched, see the date and time of each watched video",
   "permissions": ["storage", "tabs", "activeTab"],

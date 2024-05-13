@@ -70,7 +70,7 @@ const viewChannels = (channels, channels_ids) => {
     const ChannelLogo = document.createElement("img");
     const NChannelVideos = document.createElement("h4");
     const ChannelVideos = document.createElement("div");
-
+    
     ChannelLogo.className = "channel-logo";
     ChannelLogo.alt = "channel logo";
     ChannelLogo.draggable = false;
